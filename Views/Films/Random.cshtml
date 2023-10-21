@@ -1,0 +1,23 @@
+﻿@*SPECIFY THE FULLY QUALIFIED NAME OF THE CLASS WE USE IN THIS VIEW*@
+@model MvcMovieRental.ViewModels.RandomFilmViewModel 
+@{
+    ViewData["Title"] = "Random";
+}
+
+@* Conditionally (dynamically) assign classes to elements *@
+@{
+    var className = Model.Customers.Count > 5 ? "popular" : null;
+}
+@* ALSO, PARTIAL VIEWS ARE PRETTY MUCH LIKE WHEN IN REACT I EXTRACT REUSABLE COMPONENTS INTO SEPARATE ELEMENT (FILE) *@
+<h2 class="@className">@Model.Film.Name</h2>
+
+<h3>Customers</h3>
+<br/>
+    <ul>
+@foreach (var customer in Model.Customers) 
+{
+
+    <li>@customer.Name</li>
+
+}
+    </ul>

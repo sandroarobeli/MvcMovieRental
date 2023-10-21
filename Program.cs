@@ -20,6 +20,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Creating Custom Routes. ORDER NATTERS HERE: FROM MOST SPECIFIC ==> TO MOST GENERIC
+app.MapControllerRoute(
+    name: "FilmsByReleaseDate",
+    pattern: "films/released/{year}/{month}",
+    new { controller = "Films", action = "ByReleaseDate" },
+    // Apply constraints:
+    new { year = @"\d{4}", month = @"\d{2}" }
+    );
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
